@@ -21,7 +21,7 @@ builder.WebHost.UseKestrel(options =>
 
 var app = builder.Build();
 
-app.UseServiceStack(new AppHost(builder.Configuration, environment));
+app.UseServiceStack(new AppHost(environment));
 
 if (!app.Environment.IsDevelopment())
     app.UseHttpsRedirection();
