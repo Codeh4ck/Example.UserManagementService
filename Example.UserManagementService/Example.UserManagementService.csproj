@@ -7,12 +7,16 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Codelux" Version="1.2.1" />
     <PackageReference Include="Codelux.ServiceStack" Version="1.2.1" />
     <PackageReference Include="ServiceStack" Version="6.1.0" />
+    <PackageReference Include="ServiceStack.Api.OpenApi" Version="6.1.0" />
+    <PackageReference Include="ServiceStack.OrmLite.SqlServer" Version="6.1.0" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\Example.UserManagementService.Common\Example.UserManagementService.Common.csproj" />
+    <ProjectReference Include="..\Example.UserManagementService.Internal\Example.UserManagementService.Internal.csproj" />
   </ItemGroup>
 
 </Project>

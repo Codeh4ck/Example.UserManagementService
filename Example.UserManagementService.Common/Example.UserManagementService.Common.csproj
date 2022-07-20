@@ -7,8 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Responses\" />
-    <Folder Include="Requests\" />
+    <PackageReference Include="Codelux.Common" Version="1.2.1" />
   </ItemGroup>
 
 </Project>

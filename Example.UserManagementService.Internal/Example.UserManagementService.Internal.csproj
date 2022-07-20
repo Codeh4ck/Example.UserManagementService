@@ -3,7 +3,20 @@
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
-    <Nullable>enable</Nullable>
+    <Nullable>disable</Nullable>
   </PropertyGroup>
+
+  <ItemGroup>
+    <Folder Include="Mappers\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Codelux.ServiceStack" Version="1.2.1" />
+    <PackageReference Include="ServiceStack.OrmLite" Version="6.1.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Example.UserManagementService.Common\Example.UserManagementService.Common.csproj" />
+  </ItemGroup>
 
 </Project>
