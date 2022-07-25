@@ -13,6 +13,7 @@ namespace Example.UserManagementService.Dependencies
 
         public override void RegisterDependencies()
         {
+            AppHost.Container.RegisterAutoWiredAs<UserToBasicUserMapper, IMapper<User, BasicUser>>();
             AppHost.Container.RegisterAutoWiredAs<RegisterUserRequestToUserMapper, IMapper<RegisterUserRequest, User>>();
         }
     }
