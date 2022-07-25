@@ -2,7 +2,7 @@
 using ServiceStack.Data;
 using ServiceStack.OrmLite;
 using Codelux.Common.Extensions;
-using Example.UserManagementService.Common.Model;
+using Example.UserManagementService.Common.Models;
 
 namespace Example.UserManagementService.Internal.DataAccess
 {
@@ -28,10 +28,31 @@ namespace Example.UserManagementService.Internal.DataAccess
             return await db.SingleAsync<User>(x => x.Id == userId, token).ConfigureAwait(false);
         }
 
-        public async Task<User> GetUserByCredentialsAsync(string username, string password, CancellationToken token = default)
+        public async Task<User> GetUserByEmailAsync(string email, CancellationToken token = default)
         {
             using IDbConnection db = _dbConnectionFactory.OpenDbConnection();
-            return await db.SingleAsync<User>(x => x.Username == username && x.Password == password, token).ConfigureAwait(false);
+            return await db.SingleAsync<User>(x => x.Email == email, token).ConfigureAwait(false);
+        }
+
+        public async Task<bool> IsUsernameUniqueAsync(string username, CancellationToken token = default)
+        {
+            using IDbConnection db = _dbConnectionFactory.OpenDbConnection();
+            return await db.CountAsync<User>(x => x.Username == username, token).ConfigureAwait(false) == 0;
+        }
+
+        public async Task<bool> IsEmailUniqueAsync(string email, CancellationToken token = default)
+        {
+            using IDbConnection db = _dbConnectionFactory.OpenDbConnection();
+            return await db.CountAsync<User>(x => x.Email == email, token).ConfigureAwait(false) == 0;
+        }
+
+        public async Task<User> GetUserByCredentialsAsync(string usernameOrEmail, string password, CancellationToken token = default)
+        {
+            using IDbConnection db = _dbConnectionFactory.OpenDbConnection();
+
+            return 
+                await db.SingleAsync<User>(x => x.Username == usernameOrEmail && x.Password == password, token).ConfigureAwait(false) ??
+                await db.SingleAsync<User>(x => x.Email == usernameOrEmail && x.Password == password, token).ConfigureAwait(false);
         }
 
         public async Task<bool> UpdateUserAsync(User model, CancellationToken token = default)
