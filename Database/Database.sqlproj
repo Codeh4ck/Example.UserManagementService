@@ -61,6 +61,6 @@
     <Build Include="users.sql" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="localdb.publish" />
+    <None Include="localdb.publish.xml" />
   </ItemGroup>
 </Project>
