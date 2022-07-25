@@ -11,17 +11,19 @@ builder.Configuration.AddJsonFile($"{environment}.appsettings.json");
 if (environment == "Local" || environment == "Staging")
     builder.WebHost.UseUrls("http://::5000");
 
-builder.WebHost.UseKestrel(options =>
-{
-    options.ListenLocalhost(15000);
+builder.WebHost.UseIIS();
 
-    if (environment == "Local" || environment == "Staging")
-        options.ListenAnyIP(5000);
-});
+//builder.WebHost.UseKestrel(options =>
+//{
+//    options.ListenLocalhost(15000);
+
+//    if (environment == "Local" || environment == "Staging")
+//        options.ListenAnyIP(5000);
+//});
 
 var app = builder.Build();
 
-app.UseServiceStack(new AppHost(environment));
+app.UseServiceStack(new AppHost(environment, builder.Configuration));
 
 if (!app.Environment.IsDevelopment())
     app.UseHttpsRedirection();

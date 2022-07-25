@@ -8,16 +8,19 @@ namespace Example.UserManagementService.Web
     {
         private AppConfigurator _configurator;
         private readonly string _environment;
+        private readonly ConfigurationManager _configManager;
 
-        public AppHost(string environment) : base(ServiceConstants.ServiceName, typeof(AppConfigurator).Assembly)
+        public AppHost(string environment, ConfigurationManager configManager) : base(ServiceConstants.ServiceName, typeof(AppConfigurator).Assembly)
         {
             if (string.IsNullOrEmpty(environment)) throw new ArgumentNullException(nameof(environment));
+
             _environment = environment;
+            _configManager = configManager;
         }
 
         public override void Configure(Container container)
         {
-            _configurator = new AppConfigurator(this, _environment);
+            _configurator = new AppConfigurator(this, _environment, _configManager);
         }
     }
 }
