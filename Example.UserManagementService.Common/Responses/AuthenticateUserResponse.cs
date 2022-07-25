@@ -1,7 +1,9 @@
-﻿namespace Example.UserManagementService.Common.Responses
+﻿using Example.UserManagementService.Common.Models;
+
+namespace Example.UserManagementService.Common.Responses
 {
     public class AuthenticateUserResponse
     {
-        public Guid Id { get; set; }
+        public BasicUser User { get; set; }
     }
 }

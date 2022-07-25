@@ -1,4 +1,5 @@
-﻿using Codelux.Executors;
+﻿using Codelux.Mappers;
+using Codelux.Executors;
 using Codelux.Utilities.Crypto;
 using Codelux.Common.Extensions;
 using Example.UserManagementService.Common;
@@ -13,14 +14,20 @@ namespace Example.UserManagementService.Executors.AuthenticateUserExecutor
     {
         private readonly IUserRepository _userRepository;
         private readonly IPasswordEncryptor _passwordEncryptor;
+        private readonly IMapper<User, BasicUser> _userToBasicUserMapper;
 
-        public AuthenticateUserExecutor(IUserRepository userRepository, IPasswordEncryptor passwordEncryptor)
+        public AuthenticateUserExecutor(
+            IUserRepository userRepository,
+            IPasswordEncryptor passwordEncryptor,
+            IMapper<User, BasicUser> userToBasicUserMapper)
         {
             userRepository.Guard(nameof(userRepository));
             passwordEncryptor.Guard(nameof(passwordEncryptor));
+            userToBasicUserMapper.Guard(nameof(userToBasicUserMapper));
 
             _userRepository = userRepository;
             _passwordEncryptor = passwordEncryptor;
+            _userToBasicUserMapper = userToBasicUserMapper;
         }
 
 
@@ -36,7 +43,7 @@ namespace Example.UserManagementService.Executors.AuthenticateUserExecutor
 
             return new AuthenticateUserResponse()
             {
-                Id = user.Id
+                User = _userToBasicUserMapper.Map(user)
             };
         }
     }
