@@ -1,4 +1,4 @@
-﻿namespace Example.UserManagementService.Common.Model
+﻿namespace Example.UserManagementService.Common.Models
 {
     public class User
     {

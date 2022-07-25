@@ -7,10 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Mappers\" />
-  </ItemGroup>
-
-  <ItemGroup>
+    <PackageReference Include="Codelux" Version="1.2.1" />
     <PackageReference Include="Codelux.ServiceStack" Version="1.2.1" />
     <PackageReference Include="ServiceStack.OrmLite" Version="6.1.0" />
   </ItemGroup>

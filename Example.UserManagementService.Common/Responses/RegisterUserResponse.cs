@@ -1,4 +1,4 @@
-﻿using Example.UserManagementService.Common.Model;
+﻿using Example.UserManagementService.Common.Models;
 
 namespace Example.UserManagementService.Common.Responses
 {
