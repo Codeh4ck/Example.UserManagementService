@@ -1,8 +1,8 @@
 ﻿using ServiceStack;
 using ServiceStack.Data;
 using ServiceStack.OrmLite;
-using Codelux.Configuration;
 using Codelux.ServiceStack.Utilities;
+using Microsoft.Extensions.Configuration;
 using Example.UserManagementService.Internal.DataAccess;
 
 namespace Example.UserManagementService.Dependencies
@@ -13,8 +13,8 @@ namespace Example.UserManagementService.Dependencies
 
         public override void RegisterDependencies()
         {
-            IConfigSource configSource = AppHost.Container.Resolve<IConfigSource>();
-            configSource.TryGetString("dbconnectionstring", out string connectionString);
+            ConfigurationManager configManager = AppHost.Container.Resolve<ConfigurationManager>();
+            string connectionString = configManager["dbconnectionstring"];
 
             SqlServerDialect.Provider.GetStringConverter().UseUnicode = true;
             IDbConnectionFactory dbConnectionFactory = new OrmLiteConnectionFactory(connectionString, SqlServerDialect.Provider);
