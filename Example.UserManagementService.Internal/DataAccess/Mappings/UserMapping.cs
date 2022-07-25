@@ -1,5 +1,5 @@
 ﻿using Codelux.ServiceStack.OrmLite;
-using Example.UserManagementService.Common.Model;
+using Example.UserManagementService.Common.Models;
 
 namespace Example.UserManagementService.Internal.DataAccess.Mappings
 {
@@ -11,11 +11,11 @@ namespace Example.UserManagementService.Internal.DataAccess.Mappings
             MapToTable("users");
 
             MapToColumn(x => x.Id, "id");
-            MapToColumn(x => x.Username, "id");
-            MapToColumn(x => x.Password, "id");
-            MapToColumn(x => x.Email, "id");
-            MapToColumn(x => x.CreatedAt, "id");
-            MapToColumn(x => x.UpdatedAt, "id");
+            MapToColumn(x => x.Username, "username");
+            MapToColumn(x => x.Password, "password");
+            MapToColumn(x => x.Email, "email");
+            MapToColumn(x => x.CreatedAt, "created_at");
+            MapToColumn(x => x.UpdatedAt, "updated_at");
         }
     }
 }
