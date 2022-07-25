@@ -6,4 +6,12 @@
     <Nullable>disable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <PackageReference Include="Codelux" Version="1.2.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Example.UserManagementService.Common\Example.UserManagementService.Common.csproj" />
+  </ItemGroup>
+
 </Project>

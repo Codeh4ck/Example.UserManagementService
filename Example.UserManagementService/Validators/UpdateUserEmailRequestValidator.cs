@@ -19,7 +19,6 @@ namespace Example.UserManagementService.Validators
                 .NotEmpty().WithMessage("Please enter your e-mail address.")
                 .EmailAddress().WithMessage("Please enter a valid e-mail address");
 
-
             RuleFor(x => x.NewEmailConfirmation)
                 .NotEmpty().WithMessage("Please confirm your new e-mail address.")
                 .Matches(x => x.NewEmail).WithMessage("E-mail address confirmation does not match the provided e-mail address.");

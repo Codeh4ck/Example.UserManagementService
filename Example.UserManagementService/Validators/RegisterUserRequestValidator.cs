@@ -10,7 +10,6 @@ namespace Example.UserManagementService.Validators
         public RegisterUserRequestValidator(IUsernameUniqueValidationRule usernameUniqueValidationRule,
             IEmailUniqueValidationRule emailUniqueValidationRule)
         {
-
             usernameUniqueValidationRule.Guard(nameof(usernameUniqueValidationRule));
             emailUniqueValidationRule.Guard(nameof(emailUniqueValidationRule));
 
