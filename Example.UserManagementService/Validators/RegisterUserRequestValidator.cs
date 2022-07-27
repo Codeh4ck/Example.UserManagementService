@@ -24,7 +24,7 @@ namespace Example.UserManagementService.Validators
 
             RuleFor(x => x.Email)
                 .NotEmpty().WithMessage("Please enter your e-mail address.")
-                .EmailAddress().WithMessage("Please enter a valid e-mail address")
+                .EmailAddress().WithMessage("Please enter a valid e-mail address.")
                 .Must(emailUniqueValidationRule.Matches).WithMessage("E-mail address is in use. Please choose a different e-mail address.");
         }
     }
