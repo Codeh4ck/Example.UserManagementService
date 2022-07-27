@@ -23,7 +23,7 @@ namespace Example.UserManagementService.Internal.Mappers
 
         public override User Map(RegisterUserRequest model)
         {
-            return new User()
+            return new()
             {
                 Id = Guid.NewGuid(),
                 Username = model.Username,

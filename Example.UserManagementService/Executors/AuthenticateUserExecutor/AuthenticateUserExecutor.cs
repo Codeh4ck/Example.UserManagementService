@@ -31,7 +31,7 @@ namespace Example.UserManagementService.Executors.AuthenticateUserExecutor
         }
 
 
-        protected override async Task<AuthenticateUserResponse> OnExecuteAsync(AuthenticateUserRequest tin, CancellationToken token = new CancellationToken())
+        protected override async Task<AuthenticateUserResponse> OnExecuteAsync(AuthenticateUserRequest tin, CancellationToken token = new())
         {
             string hashedPassword = _passwordEncryptor.Encrypt(tin.Password);
 
@@ -41,7 +41,7 @@ namespace Example.UserManagementService.Executors.AuthenticateUserExecutor
             if (user == null)
                 throw ServiceErrors.InvalidCredentialsException;
 
-            return new AuthenticateUserResponse()
+            return new()
             {
                 User = _userToBasicUserMapper.Map(user)
             };

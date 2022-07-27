@@ -27,7 +27,7 @@ namespace Example.UserManagementService.Client
 
         public async Task<RegisterUserResponse> RegisterUserAsync(RegisterUserRequest request, CancellationToken token = default)
         {
-            using HttpRequestMessage message = new HttpRequestMessage(HttpMethod.Post, _registerUserUri);
+            using HttpRequestMessage message = new(HttpMethod.Post, _registerUserUri);
 
             string json = JsonConvert.SerializeObject(request);
             message.Content = new StringContent(json, Encoding.UTF8);
@@ -37,7 +37,7 @@ namespace Example.UserManagementService.Client
 
         public async Task<BasicUser> AuthenticateUserAsync(AuthenticateUserRequest request, CancellationToken token = default)
         {
-            using HttpRequestMessage message = new HttpRequestMessage(HttpMethod.Get,
+            using HttpRequestMessage message = new(HttpMethod.Get,
                 _authenticateUserUri + $"?Username={HttpUtility.UrlEncode(request.Username)}&Password={HttpUtility.UrlEncode(request.Password)}");
 
             return await MakeRequestAndResponseAsync<BasicUser>(request, message, true, token).ConfigureAwait(false);
@@ -45,7 +45,7 @@ namespace Example.UserManagementService.Client
 
         public async Task<UpdateUserEmailResponse> UpdateUserEmailAsync(UpdateUserEmailRequest request, CancellationToken token = default)
         {
-            using HttpRequestMessage message = new HttpRequestMessage(HttpMethod.Put, _updateUserEmailUri);
+            using HttpRequestMessage message = new(HttpMethod.Put, _updateUserEmailUri);
 
             string json = JsonConvert.SerializeObject(request);
             message.Content = new StringContent(json, Encoding.UTF8);
@@ -55,7 +55,7 @@ namespace Example.UserManagementService.Client
 
         public async Task<UpdateUserPasswordResponse> UpdateUserPasswordAsync(UpdateUserPasswordRequest request, CancellationToken token = default)
         {
-            using HttpRequestMessage message = new HttpRequestMessage(HttpMethod.Put, _updateUserPasswordUri);
+            using HttpRequestMessage message = new(HttpMethod.Put, _updateUserPasswordUri);
 
             string json = JsonConvert.SerializeObject(request);
             message.Content = new StringContent(json, Encoding.UTF8);
@@ -65,10 +65,10 @@ namespace Example.UserManagementService.Client
 
         private void Setup()
         {
-            _registerUserUri = new Uri(_endpoint, "/api/users");
-            _authenticateUserUri = new Uri(_endpoint, "/api/users");
-            _updateUserEmailUri = new Uri(_endpoint, "/api/users/email");
-            _updateUserPasswordUri = new Uri(_endpoint, "/api/users/passwords");
+            _registerUserUri = new(_endpoint, "/api/users");
+            _authenticateUserUri = new(_endpoint, "/api/users");
+            _updateUserEmailUri = new(_endpoint, "/api/users/email");
+            _updateUserPasswordUri = new(_endpoint, "/api/users/passwords");
         }
     }
 }

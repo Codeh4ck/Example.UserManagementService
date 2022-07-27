@@ -28,12 +28,12 @@ namespace Example.UserManagementService.Executors.UpdateUserEmailExecutor
         }
 
 
-        protected override async Task<UpdateUserEmailResponse> OnExecuteAsync(UpdateUserEmailRequest tin, CancellationToken token = new CancellationToken())
+        protected override async Task<UpdateUserEmailResponse> OnExecuteAsync(UpdateUserEmailRequest tin, CancellationToken token = new())
         {
             bool isUnique = await _userRepository.IsEmailUniqueAsync(tin.NewEmail, token).ConfigureAwait(false);
 
             if (!isUnique)
-                return new UpdateUserEmailResponse() { Result = UpdateUserEmailResult.EmailInUse };
+                return new() { Result = UpdateUserEmailResult.EmailInUse };
 
             User user = await _userRepository.GetUserByIdAsync(tin.UserId, token).ConfigureAwait(false);
 
@@ -41,14 +41,14 @@ namespace Example.UserManagementService.Executors.UpdateUserEmailExecutor
                 throw ServiceErrors.UserNotFoundException;
 
             if (user.Password != _passwordEncryptor.Encrypt(tin.Password))
-                return new UpdateUserEmailResponse() { Result = UpdateUserEmailResult.InvalidPassword };
+                return new() { Result = UpdateUserEmailResult.InvalidPassword };
 
             user.Email = tin.NewEmail;
             user.UpdatedAt = _clockService.Now();
 
             bool result = await _userRepository.UpdateUserAsync(user, token).ConfigureAwait(false);
 
-            return new UpdateUserEmailResponse()
+            return new()
                 { Result = result ? UpdateUserEmailResult.Success : UpdateUserEmailResult.InternalServiceError };
         }
     }

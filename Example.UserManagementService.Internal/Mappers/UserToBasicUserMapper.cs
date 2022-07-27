@@ -7,7 +7,7 @@ namespace Example.UserManagementService.Internal.Mappers
     {
         public override BasicUser Map(User model)
         {
-            return new BasicUser
+            return new()
             {
                 Id = model.Id,
                 Username = model.Username,

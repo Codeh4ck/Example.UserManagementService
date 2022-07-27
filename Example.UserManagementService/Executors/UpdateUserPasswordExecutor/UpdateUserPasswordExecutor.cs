@@ -28,7 +28,7 @@ namespace Example.UserManagementService.Executors.UpdateUserPasswordExecutor
         }
 
 
-        protected override async Task<UpdateUserPasswordResponse> OnExecuteAsync(UpdateUserPasswordRequest tin, CancellationToken token = new CancellationToken())
+        protected override async Task<UpdateUserPasswordResponse> OnExecuteAsync(UpdateUserPasswordRequest tin, CancellationToken token = new())
         {
             User user = await _userRepository.GetUserByIdAsync(tin.UserId, token).ConfigureAwait(false);
 
@@ -36,14 +36,14 @@ namespace Example.UserManagementService.Executors.UpdateUserPasswordExecutor
                 throw ServiceErrors.UserNotFoundException;
 
             if (user.Password != _passwordEncryptor.Encrypt(tin.OldPassword))
-                return new UpdateUserPasswordResponse() { Result = UpdateUserPasswordResult.InvalidPassword };
+                return new() { Result = UpdateUserPasswordResult.InvalidPassword };
 
             user.Password = _passwordEncryptor.Encrypt(tin.NewPassword);
             user.UpdatedAt = _clockService.Now();
 
             bool result = await _userRepository.UpdateUserAsync(user, token).ConfigureAwait(false);
 
-            return new UpdateUserPasswordResponse()
+            return new()
                 { Result = result ? UpdateUserPasswordResult.Success : UpdateUserPasswordResult.InternalServiceError };
         }
     }

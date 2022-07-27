@@ -26,7 +26,7 @@ namespace Example.UserManagementService.Executors.RegisterUserExecutor
             _requestToModelMapper = requestToModelMapper;
         }
 
-        protected override async Task<RegisterUserResponse> OnExecuteAsync(RegisterUserRequest tin, CancellationToken token = new CancellationToken())
+        protected override async Task<RegisterUserResponse> OnExecuteAsync(RegisterUserRequest tin, CancellationToken token = new())
         {
             User user = _requestToModelMapper.Map(tin);
 
@@ -39,7 +39,7 @@ namespace Example.UserManagementService.Executors.RegisterUserExecutor
                 _logger.LogEvent<RegisterUserExecutor>(LogType.Error,
                     $"Could not register user with ID {user.Id}. Request ID: {tin.Id}");
 
-            return new RegisterUserResponse()
+            return new()
             {
                 Id = user.Id,
                 Result = result ? RegisterUserResult.Registered : RegisterUserResult.InternalServiceError

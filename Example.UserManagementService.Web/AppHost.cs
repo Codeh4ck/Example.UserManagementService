@@ -20,7 +20,7 @@ namespace Example.UserManagementService.Web
 
         public override void Configure(Container container)
         {
-            _configurator = new AppConfigurator(this, _environment, _configManager);
+            _configurator = new(this, _environment, _configManager);
         }
     }
 }
