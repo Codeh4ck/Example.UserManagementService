@@ -18,10 +18,11 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{BCF85C13-6EDF-48A0-B68C-147DFC537FBA}"
 	ProjectSection(SolutionItems) = preProject
 		.gitignore = .gitignore
+		LICENSE.md = LICENSE.md
 		README.md = README.md
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Example.UsersManagementService.Tests", "Example.UsersManagementService.Tests\Example.UsersManagementService.Tests.csproj", "{8E579ED1-9D71-4B75-8B22-7C0C2E60D61E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Example.UsersManagementService.Tests", "Example.UsersManagementService.Tests\Example.UsersManagementService.Tests.csproj", "{8E579ED1-9D71-4B75-8B22-7C0C2E60D61E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
