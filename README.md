@@ -8,18 +8,23 @@
 The microservice is split in different projects, each being a DLL except for the Web one. Every project is named accordingly to represent its intent accurately. The microservice consists of the following projects:
 
  - **Example.UserManagementService**
+
 This project contains the main functionality of the microservice. This includes defining routes, handinling requests, registering dependencies to the IoC container and validation. This DLL is directly exposed to the internet through the Web project.
 
  -  **Example.UserManagementService.Client**
+
 This project enables third-party services to consume our microservice. It is basically an HTTP client that sends requests to our microservice and returns the relevant response. Normally, this would be uploaded to a NuGet server to be fed to potential consumers. The .Common project must also be published to a NuGet server as it contains the microservice's models (explained below).
 
 - **Example.UserManagementService.Common**
+
 This project contains all objects that are shared between each project. For example, models, standard errors and constants are defined in the Common project. This allows us to reuse objects and ensure continuity within the microservice and external consumers. This project must be published to a NuGet server, alongside the Client since the models contained here are used in the Client as well.
 
 - **Example.UserManagementService.Internal**
+
 This project contains functionality that should not be directly exposed on the outside. For example, our database communication is performed in the Internal project. Mappers and model mappings are also contained in here. We use a separate project for internal functionality to ensure that responsibility is split across our solution properly and to prevent outside sources from tampering with internal functionality. Additionally, the main microservice component can act as middleware and filter requests going through our Internal project.
 
 - **Example.UserManagementService.Web**
+
 This is an empty ASP .NET project which starts our microservice up and exposes it to the internet. Configuration files are loaded through this project and passed to the main microservice project through the `AppHost` class. Any webserver related configuration should be performed in this project. Other than bootstrapping our service and passing configuration, this project does nothing more.
 
 ## Extending the microservice
